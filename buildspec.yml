@@ -5,18 +5,16 @@ phases:
     runtime-versions:
       nodejs: 18
     commands:
-      # Install a tool to check our HTML for errors
-      - echo "Installing HTML linting tool..."
-      - npm install -g html-lint
+      # Install a modern HTML linting tool
+      - echo "Installing HTMLHint..."
+      - npm install -g htmlhint
   pre_build:
     commands:
-      # Run the linting tool to "test" our HTML file
-      - echo "Running HTML lint test..."
-      - html-lint **/*.html
+      # Run the HTMLHint tool to "test" our HTML file
+      - echo "Running HTMLHint test..."
+      - htmlhint **/*.html
   build:
     commands:
-      # This is where you would build your project (e.g., minify CSS/JS)
-      # For now, we'll just print a message.
       - echo "Build phase started on `date`"
       - echo "No build actions needed for this simple site."
 
