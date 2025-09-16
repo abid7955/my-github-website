@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      # Install a tool to check our HTML for errors
+      - echo "Installing HTML linting tool..."
+      - npm install -g html-lint
+  pre_build:
+    commands:
+      # Run the linting tool to "test" our HTML file
+      - echo "Running HTML lint test..."
+      - html-lint **/*.html
+  build:
+    commands:
+      # This is where you would build your project (e.g., minify CSS/JS)
+      # For now, we'll just print a message.
+      - echo "Build phase started on `date`"
+      - echo "No build actions needed for this simple site."
+
+artifacts:
+  # Tell CodeBuild which files to pass to the next stage (S3 Deploy)
+  files:
+    - '**/*'
